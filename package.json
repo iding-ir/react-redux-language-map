@@ -1,5 +1,5 @@
 {
-  "name": "starter-map",
+  "name": "react-redux-starter-map",
   "version": "0.6.0",
   "description": "React and redux starter map.",
   "keywords": [
@@ -17,10 +17,10 @@
   "main": "./index",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iding-ir/starter-map.git"
+    "url": "git+https://github.com/iding-ir/react-redux-starter-map.git"
   },
   "bugs": {
-    "url": "https://github.com/iding-ir/starter-map/issues"
+    "url": "https://github.com/iding-ir/react-redux-starter-map/issues"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
