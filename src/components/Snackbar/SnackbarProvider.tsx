@@ -1,6 +1,6 @@
 import React, { useState, Context, createContext } from "react";
 
-import Snackbar from "./Snackbar";
+import { Snackbar } from "./Snackbar";
 
 interface ISnackbar {
   type: "error" | "warning" | "success" | "info";
@@ -31,5 +31,3 @@ export const SnackbarProvider = (props: Props) => {
     </SnackbarContext.Provider>
   );
 };
-
-export default SnackbarProvider;

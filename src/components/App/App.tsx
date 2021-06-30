@@ -1,11 +1,11 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-import MapContainer from "./MapContainer";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import LocationPicker from "./LocationPicker";
-import Markers from "./Markers";
+import { MapContainer } from "../Map";
+import { Header } from "../Header";
+import { Sidebar } from "../Sidebar";
+import { LocationPicker } from "../Map";
+import { Markers } from "../Map";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const App = () => {
+export const App = () => {
   const classes = useStyles();
 
   return (
@@ -34,5 +34,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;

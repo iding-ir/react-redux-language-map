@@ -18,9 +18,14 @@ import Typography from "@material-ui/core/Typography";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
-import { StateContext } from "./StateProvider";
-import { setPickedLocation } from "../actions/location";
-import { IState } from "../reducers";
+import { StateContext } from "../State/StateProvider";
+import { setPickedLocation } from "../../actions/location";
+import { IState } from "../../reducers";
+
+export interface Location {
+  lon: number;
+  lat: number;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -120,7 +125,7 @@ const DialogActions = withStyles((theme: Theme) => ({
 
 interface Props {}
 
-const LocationPicker = (props: Props) => {
+export const LocationPicker = (props: Props) => {
   const classes = useStyles();
 
   const { t } = useTranslation();
@@ -132,16 +137,10 @@ const LocationPicker = (props: Props) => {
   const { map } = state;
 
   const [open, setOpen] = React.useState<boolean>(false);
-
   const [picker, setPicker] = React.useState<boolean>(false);
 
-  const pickedLocation = (useSelector(
-    (state: IState) => state.location.picked
-  ) as unknown) as Location;
-
-  const isSignedIn = useSelector(
-    (state: IState) => state.auth.isSignedIn
-  ) as boolean;
+  const pickedLocation = useSelector((state: IState) => state.location.picked);
+  const isSignedIn = useSelector((state: IState) => state.auth.isSignedIn);
 
   useEffect(() => {
     setOpen(isSignedIn && !pickedLocation);
@@ -199,5 +198,3 @@ const LocationPicker = (props: Props) => {
     </div>
   );
 };
-
-export default LocationPicker;

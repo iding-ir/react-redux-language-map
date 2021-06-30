@@ -11,9 +11,9 @@ import Help from "@material-ui/icons/HelpOutline";
 import MailIcon from "@material-ui/icons/Mail";
 import { useTranslation } from "react-i18next";
 
-import { IState } from "../reducers";
-import { closeSidebar } from "../actions/sidebar";
-import { SIDEBAR_WIDTH } from "../constants/constants";
+import { IState } from "../../reducers";
+import { closeSidebar } from "../../actions/sidebar";
+import { SIDEBAR_WIDTH } from "../../constants";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Sidebar = () => {
+export const Sidebar = () => {
   const classes = useStyles();
 
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
-  const open = useSelector((state: IState) => state.sidebar.open) as boolean;
+  const open = useSelector((state: IState) => state.sidebar.open);
 
   return (
     <Drawer
@@ -75,5 +75,3 @@ const Sidebar = () => {
     </Drawer>
   );
 };
-
-export default Sidebar;

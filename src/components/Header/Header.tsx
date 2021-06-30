@@ -8,8 +8,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useTranslation } from "react-i18next";
 
-import Auth from "./Auth";
-import { openSidebar } from "../actions/sidebar";
+import { Auth } from "../Auth";
+import { openSidebar } from "../../actions/sidebar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Header = () => {
+export const Header = () => {
   const classes = useStyles();
 
   const { t } = useTranslation();
@@ -53,5 +53,3 @@ const Header = () => {
     </AppBar>
   );
 };
-
-export default Header;

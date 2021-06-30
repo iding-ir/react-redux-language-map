@@ -1,6 +1,6 @@
 import { LOCATION_SET_CURRENT, LOCATION_SET_PICKED } from "../constants";
 import { IAction } from "../actions/location";
-import { Location } from "../components/Auth";
+import { Location } from "../components/Map";
 
 export interface IStateLocation {
   current: Location;

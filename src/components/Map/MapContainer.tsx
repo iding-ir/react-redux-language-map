@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, ReactNode } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import mapboxgl, { Map } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import { StateContext } from "./StateProvider";
+import { StateContext } from "../State";
+import { MAP_STYLE } from "../../constants/constants";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -11,16 +12,16 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "relative",
       width: "100%",
       height: "100%",
-      flexGrow: 10,
+      flexGrow: 1,
     },
   })
 );
 
 interface Props {
-  children: JSX.Element[] | JSX.Element;
+  children: ReactNode;
 }
 
-const MapContainer = (props: Props) => {
+export const MapContainer = (props: Props) => {
   const { children } = props;
 
   const classes = useStyles();
@@ -36,7 +37,7 @@ const MapContainer = (props: Props) => {
       zoom: 3.5,
       minZoom: 2,
       maxZoom: 20,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: MAP_STYLE,
     });
 
     const navigationControl = new mapboxgl.NavigationControl({});
@@ -53,5 +54,3 @@ const MapContainer = (props: Props) => {
     </div>
   );
 };
-
-export default MapContainer;

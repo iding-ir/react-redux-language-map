@@ -9,17 +9,12 @@ import {
 import Button from "@material-ui/core/Button";
 import { useTranslation } from "react-i18next";
 
-import { signIn, signOut } from "../actions/auth";
-import { registerUser } from "../actions/user";
-import { setCurrentLocation } from "../actions/location";
-import { IState } from "../reducers";
-import getLocation from "../utils/getLocation";
-import { SnackbarContext } from "./Snackbar/SnackbarProvider";
-
-export interface Location {
-  lon: number;
-  lat: number;
-}
+import { signIn, signOut } from "../../actions/auth";
+import { registerUser } from "../../actions/user";
+import { setCurrentLocation } from "../../actions/location";
+import { IState } from "../../reducers";
+import getLocation from "../../utils/getLocation";
+import { SnackbarContext } from "../Snackbar/SnackbarProvider";
 
 export interface User {
   name: string;
@@ -39,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {}
 
-const Auth = (props: Props) => {
+export const Auth = (props: Props) => {
   const classes = useStyles();
 
   const { t } = useTranslation();
@@ -48,18 +43,16 @@ const Auth = (props: Props) => {
 
   const { setSnackbar } = useContext(SnackbarContext);
 
-  const user = useSelector((state: IState) => state.auth.user) as User;
+  const user = useSelector((state: IState) => state.auth.user);
 
-  const isSignedIn = useSelector(
-    (state: IState) => state.auth.isSignedIn
-  ) as boolean;
+  const isSignedIn = useSelector((state: IState) => state.auth.isSignedIn);
 
   const onSuccess = async (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
     if ("profileObj" in response) {
-      const name = response.profileObj.name as string;
-      const email = response.profileObj.email as string;
+      const name = response.profileObj.name;
+      const email = response.profileObj.email;
       const user = { name, email };
 
       dispatch(signIn(user));
@@ -128,5 +121,3 @@ const Auth = (props: Props) => {
     />
   );
 };
-
-export default Auth;

@@ -1,5 +1,5 @@
 import { LOCATION_SET_CURRENT, LOCATION_SET_PICKED } from "../constants";
-import { Location } from "../components/Auth";
+import { Location } from "../components/Map";
 
 export interface IAction {
   type: string;

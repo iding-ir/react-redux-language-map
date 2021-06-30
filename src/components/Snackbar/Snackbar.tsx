@@ -4,7 +4,7 @@ import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { SnackbarContext } from "./SnackbarProvider";
-import { SNACKBAR_DURARION } from "../../constants/constants";
+import { SNACKBAR_DURARION } from "../../constants";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Snackbar = () => {
+export const Snackbar = () => {
   const classes = useStyles();
 
   const { snackbar, setSnackbar } = useContext(SnackbarContext);
@@ -46,5 +46,3 @@ const Snackbar = () => {
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 };
-
-export default Snackbar;

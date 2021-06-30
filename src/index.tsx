@@ -6,10 +6,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "./index.css";
 import "./localization";
 import store from "./stores";
-import App from "./components/App";
+import { App } from "./components/App";
+import { StateProvider } from "./components/State";
+import { SnackbarProvider } from "./components/Snackbar";
 import reportWebVitals from "./reportWebVitals";
-import StateProvider from "./components/StateProvider";
-import SnackbarProvider from "./components/Snackbar/SnackbarProvider";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -3,9 +3,8 @@ import { useSelector } from "react-redux";
 import mapboxgl from "mapbox-gl";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-import { StateContext } from "./StateProvider";
-import { IState } from "../reducers";
-import { Location } from "./Auth";
+import { StateContext } from "../State/StateProvider";
+import { IState } from "../../reducers";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,20 +23,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {}
 
-const Markers = (props: Props) => {
+export const Markers = (props: Props) => {
   const classes = useStyles();
 
   const { state, setState } = useContext(StateContext);
 
   const { map, markers } = state;
 
-  const pickedLocation = useSelector(
-    (state: IState) => state.location.picked
-  ) as Location;
-
-  const isSignedIn = useSelector(
-    (state: IState) => state.auth.isSignedIn
-  ) as boolean;
+  const pickedLocation = useSelector((state: IState) => state.location.picked);
+  const isSignedIn = useSelector((state: IState) => state.auth.isSignedIn);
 
   useEffect(() => {
     if ((markers?.picked && !isSignedIn) || markers?.picked) {
@@ -63,5 +57,3 @@ const Markers = (props: Props) => {
 
   return <div></div>;
 };
-
-export default Markers;
