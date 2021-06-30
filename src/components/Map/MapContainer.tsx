@@ -5,6 +5,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { StateContext } from "../State";
 import { MAP_STYLE_LIGHT, MAP_STYLE_DARK } from "../../constants/constants";
 import { useMapboxGL } from "../../hooks/useMapboxGL";
+import { usePopup } from "../../hooks/usePopup";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,6 +28,8 @@ export const MapContainer = (props: Props) => {
   const classes = useStyles();
 
   const { state, setState } = useContext(StateContext);
+
+  const { openPopup } = usePopup();
 
   const { map } = useMapboxGL({
     icons: {
@@ -57,7 +60,26 @@ export const MapContainer = (props: Props) => {
           coordinates[0] += event.lngLat.lng > coordinates[0] ? 360 : -360;
         }
 
-        console.log(properties);
+        openPopup({
+          map,
+          lnglat: coordinates,
+          content: <div>{properties.name}</div>,
+        });
+      });
+
+      map.on("click", "point-symbol-dogs", (event: any) => {
+        let properties = event.features[0].properties;
+        let coordinates = event.features[0].geometry.coordinates.slice();
+
+        while (Math.abs(event.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += event.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        openPopup({
+          map,
+          lnglat: coordinates,
+          content: <div>{properties.name}</div>,
+        });
       });
     }
 
