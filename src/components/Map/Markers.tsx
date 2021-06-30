@@ -41,6 +41,7 @@ export const Markers = (props: Props) => {
 
     if (pickedLocation) {
       const marker = document.createElement("div");
+
       marker.className = classes.marker;
 
       new mapboxgl.Marker(marker, {
@@ -51,6 +52,7 @@ export const Markers = (props: Props) => {
 
       setState({ ...state, markers: { ...markers, picked: marker } });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pickedLocation]);
 
