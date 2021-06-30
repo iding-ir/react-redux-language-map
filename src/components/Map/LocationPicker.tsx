@@ -31,8 +31,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     trigger: {
       position: "absolute",
-      right: "1rem",
-      bottom: "2rem",
+      left: "50%",
+      bottom: "1rem",
+      transform: "translateX(-50%)",
       width: "40px",
       height: "40px",
       backgroundColor: "#ffffff",
