@@ -31,16 +31,15 @@ export const Markers = (props: Props) => {
   const { map, markers } = state;
 
   const pickedLocation = useSelector((state: IState) => state.location.picked);
-  const isSignedIn = useSelector((state: IState) => state.auth.isSignedIn);
 
   useEffect(() => {
-    if ((markers?.picked && !isSignedIn) || markers?.picked) {
+    if (markers?.picked || markers?.picked) {
       markers.picked.remove();
 
       setState({ ...state, markers: { ...markers, picked: null } });
     }
 
-    if (pickedLocation && isSignedIn) {
+    if (pickedLocation) {
       const marker = document.createElement("div");
       marker.className = classes.marker;
 
@@ -53,7 +52,7 @@ export const Markers = (props: Props) => {
       setState({ ...state, markers: { ...markers, picked: marker } });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pickedLocation, isSignedIn]);
+  }, [pickedLocation]);
 
   return <div></div>;
 };

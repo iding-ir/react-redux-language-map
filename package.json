@@ -47,7 +47,6 @@
     "mapbox-gl": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-google-login": "^5.2.2",
     "react-i18next": "^11.11.0",
     "react-redux": "^7.2.4",
     "react-scripts": "4.0.1",

@@ -141,11 +141,10 @@ export const LocationPicker = (props: Props) => {
   const [picker, setPicker] = React.useState<boolean>(false);
 
   const pickedLocation = useSelector((state: IState) => state.location.picked);
-  const isSignedIn = useSelector((state: IState) => state.auth.isSignedIn);
 
   useEffect(() => {
-    setOpen(isSignedIn && !pickedLocation);
-  }, [isSignedIn, pickedLocation]);
+    setOpen(!pickedLocation);
+  }, [pickedLocation]);
 
   const handleClose = () => {
     setOpen(false);
@@ -171,11 +170,9 @@ export const LocationPicker = (props: Props) => {
 
   return (
     <div>
-      {isSignedIn && <div className={triggerClasses} onClick={enablePicker} />}
+      <div className={triggerClasses} onClick={enablePicker} />
 
-      {isSignedIn && picker && (
-        <div className={classes.picker} onClick={getLocation} />
-      )}
+      {picker && <div className={classes.picker} onClick={getLocation} />}
 
       <Dialog
         onClose={handleClose}
