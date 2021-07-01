@@ -4,7 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import { StateContext } from "../State";
 import { MAP_STYLE_LIGHT, MAP_STYLE_DARK } from "../../constants/constants";
-import { useMapboxGL } from "../../hooks/useMapboxGL";
+import { useMapboxGL } from "../../hooks/useMap";
 import { usePopup } from "../../hooks/usePopup";
 
 const useStyles = makeStyles((theme: Theme) =>

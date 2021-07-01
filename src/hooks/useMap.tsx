@@ -3,7 +3,7 @@ import mapboxgl, { Map } from "mapbox-gl";
 
 import { extend } from "../utils/extend.js";
 import { iOptions } from "./iOptions";
-import { Options } from "./Options.d";
+import { Options } from "./Options";
 import { loadIcons } from "../modules/loadIcons";
 import { build } from "../modules/build";
 import { fetchGeoJson } from "../modules/fetchGeoJson";

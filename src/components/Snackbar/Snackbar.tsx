@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, SyntheticEvent } from "react";
 import MuiSnackbar from "@material-ui/core/Snackbar";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { makeStyles, Theme } from "@material-ui/core/styles";
@@ -20,7 +20,7 @@ export const Snackbar = () => {
 
   const { snackbar, setSnackbar } = useContext(SnackbarContext);
 
-  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+  const handleClose = (event?: SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
       return;
     }

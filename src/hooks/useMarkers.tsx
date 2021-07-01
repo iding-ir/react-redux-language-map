@@ -6,7 +6,7 @@ interface MarkerOptions {
   map: Map;
   name: string;
   lnglat: LngLatLike;
-  icon?: JSX.Element;
+  iconUrl?: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -35,6 +35,10 @@ export const useMarkers = () => {
     const marker = document.createElement("div");
 
     marker.className = classes.marker;
+
+    if (options.iconUrl) {
+      marker.style.backgroundImage = `url('${options.iconUrl}')`;
+    }
 
     new mapboxgl.Marker(marker, {
       anchor: "bottom",

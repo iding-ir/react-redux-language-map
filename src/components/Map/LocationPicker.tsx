@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createStyles,
@@ -88,7 +88,7 @@ const styles = (theme: Theme) =>
 
 export interface DialogTitleProps extends WithStyles<typeof styles> {
   id: string;
-  children: React.ReactNode;
+  children: ReactNode;
   onClose: () => void;
 }
 
@@ -189,10 +189,10 @@ export const LocationPicker = (props: Props) => {
 
       <Dialog
         onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
+        aria-labelledby="location-picker-dialog-title"
         open={open}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <DialogTitle id="location-picker-dialog-title" onClose={handleClose}>
           {t("locationPicker.title")}
         </DialogTitle>
 
