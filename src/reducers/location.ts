@@ -1,10 +1,11 @@
-import { LOCATION_SET_CURRENT, LOCATION_SET_PICKED } from "../constants";
+import { LngLatLike } from "mapbox-gl";
+
+import { LOCATION_SET_CURRENT, LOCATION_SET_PICKED } from "../constants/redux";
 import { IAction } from "../actions/location";
-import { Location } from "../components/Map";
 
 export interface IStateLocation {
-  current: Location;
-  picked: Location;
+  current: LngLatLike;
+  picked: LngLatLike;
 }
 
 const initialState = {

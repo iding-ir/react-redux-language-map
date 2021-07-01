@@ -1,5 +1,5 @@
 import { useState } from "react";
-import mapboxgl, { Map, Marker, LngLatLike } from "mapbox-gl";
+import { Map, Marker, LngLatLike } from "mapbox-gl";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 interface MarkerOptions {
@@ -40,7 +40,7 @@ export const useMarkers = () => {
       marker.style.backgroundImage = `url('${options.iconUrl}')`;
     }
 
-    new mapboxgl.Marker(marker, {
+    new Marker(marker, {
       anchor: "bottom",
     })
       .setLngLat(options.lnglat)

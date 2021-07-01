@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
-import mapboxgl, { Map, Popup, LngLatLike } from "mapbox-gl";
+import { Map, Popup, LngLatLike } from "mapbox-gl";
 
 interface PopupOptions {
   map: Map;
@@ -16,7 +16,7 @@ export const usePopup = () => {
 
     ReactDOM.render(options.content, placeholder);
 
-    const popup = new mapboxgl.Popup({
+    const popup = new Popup({
       closeButton: false,
     })
       .setLngLat(options.lnglat)

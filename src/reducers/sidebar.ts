@@ -1,4 +1,8 @@
-import { SIDEBAR_OPEN, SIDEBAR_CLOSE, SIDEBAR_TOGGLE } from "../constants";
+import {
+  SIDEBAR_OPEN,
+  SIDEBAR_CLOSE,
+  SIDEBAR_TOGGLE,
+} from "../constants/redux";
 import { IAction } from "../actions/sidebar";
 
 export interface IStateSidebar {

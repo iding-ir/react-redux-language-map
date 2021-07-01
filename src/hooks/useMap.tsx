@@ -1,38 +1,34 @@
 import { useState, useEffect } from "react";
 import mapboxgl, { Map } from "mapbox-gl";
 
-import { extend } from "../utils/extend.js";
-import { iOptions } from "./iOptions";
-import { Options } from "./Options";
 import { loadIcons } from "../modules/loadIcons";
 import { build } from "../modules/build";
 import { fetchGeoJson } from "../modules/fetchGeoJson";
 import { renderGeoJson } from "../modules/renderGeoJson";
+import * as iOptions from "../constants/iOptions";
 
-export const useMap = (uOptions: Partial<Options>) => {
-  const options = extend(true, iOptions, uOptions) as Options;
-
+export const useMap = () => {
   const [map, setMap] = useState<Map>();
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN as string;
 
-    const map: Map = new mapboxgl.Map({
-      container: options.map.container,
-      center: options.map.center,
-      zoom: options.map.zoom,
-      minZoom: options.map.minZoom,
-      maxZoom: options.map.maxZoom,
-      pitch: options.map.pitch,
-      bearing: options.map.bearing,
-      hash: options.map.hash,
-      style: options.styles[options.defaultStyle],
+    const map: Map = new Map({
+      container: iOptions.iMap.container,
+      center: iOptions.iMap.center,
+      zoom: iOptions.iMap.zoom,
+      minZoom: iOptions.iMap.minZoom,
+      maxZoom: iOptions.iMap.maxZoom,
+      pitch: iOptions.iMap.pitch,
+      bearing: iOptions.iMap.bearing,
+      hash: iOptions.iMap.hash,
+      style: iOptions.iStyles[iOptions.iDefaultStyle],
     });
 
-    build(map, options).then(() => {
-      loadIcons(map, options).then(() => {
-        fetchGeoJson(map, options).then((geoJsons) => {
-          renderGeoJson(map, options, geoJsons).then(() => {
+    build(map).then(() => {
+      loadIcons(map).then(() => {
+        fetchGeoJson(map).then((geoJsons) => {
+          renderGeoJson(map, geoJsons).then(() => {
             setMap(map);
           });
         });

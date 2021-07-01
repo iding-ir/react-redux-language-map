@@ -4,20 +4,14 @@ export interface IAction {
   type: string;
 }
 
-export const openSidebar = (): IAction => {
-  return {
-    type: SIDEBAR_OPEN,
-  };
-};
+export const openSidebar = (): IAction => ({
+  type: SIDEBAR_OPEN,
+});
 
-export const closeSidebar = (): IAction => {
-  return {
-    type: SIDEBAR_CLOSE,
-  };
-};
+export const closeSidebar = (): IAction => ({
+  type: SIDEBAR_CLOSE,
+});
 
-export const sidebarToggle = (): IAction => {
-  return {
-    type: SIDEBAR_TOGGLE,
-  };
-};
+export const sidebarToggle = (): IAction => ({
+  type: SIDEBAR_TOGGLE,
+});

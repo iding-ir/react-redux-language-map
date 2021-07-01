@@ -1,10 +1,3 @@
+export * from "./redux";
+export * from "./iOptions";
 export * from "./constants";
-
-export const USER_REGISTER = "USER_REGISTER";
-
-export const SIDEBAR_OPEN = "SIDEBAR_OPEN";
-export const SIDEBAR_CLOSE = "SIDEBAR_CLOSE";
-export const SIDEBAR_TOGGLE = "SIDEBAR_TOGGLE";
-
-export const LOCATION_SET_CURRENT = "LOCATION_SET_CURRENT";
-export const LOCATION_SET_PICKED = "LOCATION_SET_PICKED";

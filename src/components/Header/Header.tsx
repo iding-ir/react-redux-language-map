@@ -28,6 +28,10 @@ export const Header = () => {
 
   const dispatch = useDispatch();
 
+  const onClick = () => {
+    dispatch(openSidebar());
+  };
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -36,9 +40,7 @@ export const Header = () => {
           className={classes.menuButton}
           color="inherit"
           aria-label="menu"
-          onClick={() => {
-            dispatch(openSidebar());
-          }}
+          onClick={onClick}
         >
           <MenuIcon />
         </IconButton>

@@ -23,11 +23,6 @@ import { IState } from "../../reducers";
 import { StateContext } from "../State/StateProvider";
 import { useMarkers } from "../../hooks/useMarkers";
 
-export interface Location {
-  lon: number;
-  lat: number;
-}
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     trigger: {

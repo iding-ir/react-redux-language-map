@@ -1,8 +1,9 @@
 import { Map, MapMouseEvent } from "mapbox-gl";
-import { Options } from "../hooks/Options.d";
 
-export const prepareSource = (map: Map, options: Options, suffix: string) => {
-  const prefix = options.sourcePrefix;
+import * as iOptions from "../constants/iOptions";
+
+export const prepareSource = (map: Map, suffix: string) => {
+  const prefix = iOptions.iSourcePrefix;
   const source = prefix + suffix;
 
   if (map.getSource(source)) map.removeSource(source);
@@ -10,8 +11,8 @@ export const prepareSource = (map: Map, options: Options, suffix: string) => {
   return source;
 };
 
-export const prepareLayers = (map: Map, options: Options, suffix: string) => {
-  const prefixes: any = options.layersPrefixes;
+export const prepareLayers = (map: Map, suffix: string) => {
+  const prefixes: any = iOptions.iLayersPrefixes;
   const layers: { [key: string]: any } = {};
 
   for (let featureKey in prefixes) {
@@ -31,10 +32,7 @@ export const prepareLayers = (map: Map, options: Options, suffix: string) => {
   return layers;
 };
 
-export const makeLayerInteractive = (
-  map: Map,
-  layer: any
-) => {
+export const makeLayerInteractive = (map: Map, layer: any) => {
   map.on("mousemove", layer, (event: MapMouseEvent) => {
     map.getCanvas().style.cursor = "pointer";
   });
@@ -44,19 +42,20 @@ export const makeLayerInteractive = (
   });
 };
 
-export const renderGeoJson = (map: Map, options: Options, geoJsons: any) => {
+export const renderGeoJson = (map: Map, geoJsons: any) => {
   return new Promise((resolve, reject) => {
-    for (let key in options.geoJsons) {
-      const value = options.geoJsons[key];
+    for (let key in iOptions.iGeoJsons) {
+      const value = iOptions.iGeoJsons[key];
 
-      const source = prepareSource(map, options, key);
-      const layers = prepareLayers(map, options, key);
+      const source = prepareSource(map, key);
+      const layers = prepareLayers(map, key);
 
-      const mustRender = options.layers;
+      const mustRender = iOptions.iLayers;
 
-      const primaryColor = options.featureColors[options.defaultStyle].primary;
+      const primaryColor =
+        iOptions.iFeatureColors[iOptions.iDefaultStyle].primary;
       const secondaryColor =
-        options.featureColors[options.defaultStyle].secondary;
+        iOptions.iFeatureColors[iOptions.iDefaultStyle].secondary;
 
       map.addSource(source, {
         type: "geojson",
@@ -210,7 +209,7 @@ export const renderGeoJson = (map: Map, options: Options, geoJsons: any) => {
             ["==", ["geometry-type"], "MultiLineString"],
           ],
           layout: {
-            "icon-image": options.defaultIcon,
+            "icon-image": iOptions.iDefaultIcon,
             "icon-size": 1,
             "icon-anchor": "center",
             "icon-allow-overlap": true,
@@ -250,7 +249,7 @@ export const renderGeoJson = (map: Map, options: Options, geoJsons: any) => {
               ["get", "icon"],
               ["has", "type"],
               ["get", "type"],
-              options.defaultIcon,
+              iOptions.iDefaultIcon,
             ],
             "icon-size": 1,
             "icon-anchor": "center",

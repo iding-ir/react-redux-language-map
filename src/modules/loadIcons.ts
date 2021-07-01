@@ -1,12 +1,13 @@
 import { Map } from "mapbox-gl";
-import { Options } from "../hooks/Options.d";
 
-export const loadIcons = (map: Map, options: Options) => {
+import * as iOptions from "../constants/iOptions";
+
+export const loadIcons = (map: Map) => {
   return new Promise<void>((resolve, reject) => {
     const promises: { [key: string]: Promise<void> } = {};
 
-    for (let key in options.icons) {
-      const value = options.icons[key];
+    for (let key in iOptions.iIcons) {
+      const value = iOptions.iIcons[key];
 
       promises[key] = new Promise<void>((resolve, reject) => {
         map.loadImage(value, (error, image: any) => {

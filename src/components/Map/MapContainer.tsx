@@ -5,7 +5,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useTranslation } from "react-i18next";
 
 import { StateContext } from "../State";
-import { MAP_STYLE_LIGHT, MAP_STYLE_DARK } from "../../constants/constants";
 import { useMap } from "../../hooks/useMap";
 import { usePopup } from "../../hooks/usePopup";
 import { getLocation } from "../../utils/getLocation";
@@ -41,22 +40,7 @@ export const MapContainer = (props: Props) => {
 
   const { openPopup } = usePopup();
 
-  const { map } = useMap({
-    icons: {
-      cat: "/assets/images/icon-cat.png",
-      dog: "/assets/images/icon-dog.png",
-    },
-    geoJsons: {
-      cats: "/data/cats.json",
-      dogs: "/data/dogs.json",
-      ways: "/data/ways.json",
-    },
-    styles: {
-      light: MAP_STYLE_LIGHT,
-      dark: MAP_STYLE_DARK,
-    },
-    defaultStyle: "dark",
-  });
+  const { map } = useMap();
 
   useEffect(() => {
     getLocation()

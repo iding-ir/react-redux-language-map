@@ -1,14 +1,15 @@
 import mapboxgl, { Map } from "mapbox-gl";
-import { Options } from "../hooks/Options.d";
 
-export const build = (map: Map, options: Options) => {
-  if (options.controls.fullscreen) {
+import * as iOptions from "../constants/iOptions";
+
+export const build = (map: Map) => {
+  if (iOptions.iControls.fullscreen) {
     const fullscreenControl = new mapboxgl.FullscreenControl({});
 
     map.addControl(fullscreenControl, "top-right");
   }
 
-  if (options.controls.geolocation) {
+  if (iOptions.iControls.geolocation) {
     const geolocateControl = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true,
@@ -19,7 +20,7 @@ export const build = (map: Map, options: Options) => {
     map.addControl(geolocateControl, "bottom-right");
   }
 
-  if (options.controls.navigation) {
+  if (iOptions.iControls.navigation) {
     const navigationControl = new mapboxgl.NavigationControl({});
 
     map.addControl(navigationControl, "top-right");
@@ -31,7 +32,7 @@ export const build = (map: Map, options: Options) => {
         map.setPaintProperty(
           "background",
           "background-color",
-          options.mapColors[options.defaultStyle].background
+          iOptions.iMapColors[iOptions.iDefaultStyle].background
         );
       }
 
@@ -39,7 +40,7 @@ export const build = (map: Map, options: Options) => {
         map.setPaintProperty(
           "country-fills",
           "fill-color",
-          options.mapColors[options.defaultStyle].fill
+          iOptions.iMapColors[iOptions.iDefaultStyle].fill
         );
       }
 
@@ -47,7 +48,7 @@ export const build = (map: Map, options: Options) => {
         map.setPaintProperty(
           "country-lines",
           "line-color",
-          options.mapColors[options.defaultStyle].line
+          iOptions.iMapColors[iOptions.iDefaultStyle].line
         );
       }
 
@@ -55,7 +56,7 @@ export const build = (map: Map, options: Options) => {
         map.setPaintProperty(
           "country-symbols",
           "text-color",
-          options.mapColors[options.defaultStyle].text
+          iOptions.iMapColors[iOptions.iDefaultStyle].text
         );
       }
     });
