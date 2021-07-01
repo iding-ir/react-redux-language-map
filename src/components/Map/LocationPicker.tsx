@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createStyles,
@@ -18,9 +18,10 @@ import Typography from "@material-ui/core/Typography";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
-import { StateContext } from "../State/StateProvider";
 import { setPickedLocation } from "../../actions/location";
 import { IState } from "../../reducers";
+import { StateContext } from "../State/StateProvider";
+import { useMarkers } from "../../hooks/useMarkers";
 
 export interface Location {
   lon: number;
@@ -133,12 +134,14 @@ export const LocationPicker = (props: Props) => {
 
   const dispatch = useDispatch();
 
+  const { markers, createMarker, removeMarker } = useMarkers();
+
   const { state } = useContext(StateContext);
 
   const { map } = state;
 
-  const [open, setOpen] = React.useState<boolean>(false);
-  const [picker, setPicker] = React.useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [picker, setPicker] = useState<boolean>(false);
 
   const pickedLocation = useSelector((state: IState) => state.location.picked);
 
@@ -153,9 +156,19 @@ export const LocationPicker = (props: Props) => {
   };
 
   const getLocation = () => {
+    if (markers.picked) {
+      removeMarker("picked");
+    }
+
     const center = map.getCenter();
 
     setPicker(false);
+
+    createMarker({
+      map,
+      name: "picked",
+      lnglat: center,
+    });
 
     dispatch(setPickedLocation(center));
   };

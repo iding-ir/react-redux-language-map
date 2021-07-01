@@ -1,0 +1,55 @@
+import { useState } from "react";
+import mapboxgl, { Map, Marker, LngLatLike } from "mapbox-gl";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+
+interface MarkerOptions {
+  map: Map;
+  name: string;
+  lnglat: LngLatLike;
+  icon?: JSX.Element;
+}
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    marker: {
+      width: "50px",
+      height: "50px",
+      transform: "translate(-50%, -100%)",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "bottom center",
+      backgroundSize: "100% ",
+      backgroundImage: "url('../assets/images/icon-marker.png')",
+      zIndex: 999,
+    },
+  })
+);
+
+export const useMarkers = () => {
+  const classes = useStyles();
+
+  const [markers, setMarkers] = useState<{
+    [key: string]: Marker | HTMLDivElement;
+  }>({});
+
+  const createMarker = (options: MarkerOptions) => {
+    const marker = document.createElement("div");
+
+    marker.className = classes.marker;
+
+    new mapboxgl.Marker(marker, {
+      anchor: "bottom",
+    })
+      .setLngLat(options.lnglat)
+      .addTo(options.map);
+
+    setMarkers({ ...markers, [options.name]: marker });
+  };
+
+  const removeMarker = (name: string) => {
+    if (markers[name]) {
+      markers[name].remove();
+    }
+  };
+
+  return { markers, createMarker, removeMarker };
+};
