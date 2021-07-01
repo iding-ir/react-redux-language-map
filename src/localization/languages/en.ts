@@ -8,8 +8,12 @@ const localization = {
   },
   locationPicker: {
     title: "Pick a location",
-    content: "In order to continue, pick a location on the map",
+    content: "In order to continue, pick a location on the map.",
     button: "Pick a location",
+  },
+  currentLocation: {
+    success: "Picked your current location successfully.",
+    failure: "Failed to pick your current location.",
   },
 };
 

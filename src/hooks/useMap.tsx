@@ -9,7 +9,7 @@ import { build } from "../modules/build";
 import { fetchGeoJson } from "../modules/fetchGeoJson";
 import { renderGeoJson } from "../modules/renderGeoJson";
 
-export const useMapboxGL = (uOptions: Partial<Options>) => {
+export const useMap = (uOptions: Partial<Options>) => {
   const options = extend(true, iOptions, uOptions) as Options;
 
   const [map, setMap] = useState<Map>();

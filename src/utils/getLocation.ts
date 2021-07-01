@@ -1,4 +1,4 @@
-export default function getLocation() {
+export const getLocation = () => {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       const onSuccess = (position: GeolocationPosition) => {
@@ -27,4 +27,4 @@ export default function getLocation() {
       reject("Geolocation API is not supported by browser.");
     }
   });
-}
+};

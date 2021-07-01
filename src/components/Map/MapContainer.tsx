@@ -1,11 +1,16 @@
 import React, { useEffect, useContext, ReactNode } from "react";
+import { useDispatch } from "react-redux";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useTranslation } from "react-i18next";
 
 import { StateContext } from "../State";
 import { MAP_STYLE_LIGHT, MAP_STYLE_DARK } from "../../constants/constants";
-import { useMapboxGL } from "../../hooks/useMap";
+import { useMap } from "../../hooks/useMap";
 import { usePopup } from "../../hooks/usePopup";
+import { getLocation } from "../../utils/getLocation";
+import { setCurrentLocation } from "../../actions/location";
+import { SnackbarContext } from "../Snackbar/SnackbarProvider";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,13 +30,18 @@ interface Props {
 export const MapContainer = (props: Props) => {
   const { children } = props;
 
+  const dispatch = useDispatch();
+
   const classes = useStyles();
 
+  const { t } = useTranslation();
+
   const { state, setState } = useContext(StateContext);
+  const { setSnackbar } = useContext(SnackbarContext);
 
   const { openPopup } = usePopup();
 
-  const { map } = useMapboxGL({
+  const { map } = useMap({
     icons: {
       cat: "/assets/images/icon-cat.png",
       dog: "/assets/images/icon-dog.png",
@@ -47,6 +57,34 @@ export const MapContainer = (props: Props) => {
     },
     defaultStyle: "dark",
   });
+
+  useEffect(() => {
+    getLocation()
+      .then((p: unknown) => {
+        const position = p as GeolocationPosition;
+        const currentLocation = {
+          lon: position.coords.longitude,
+          lat: position.coords.latitude,
+        };
+
+        dispatch(setCurrentLocation(currentLocation));
+
+        setSnackbar({
+          type: "success",
+          message: t("currentLocation.success"),
+        });
+      })
+      .catch((error) => {
+        setSnackbar({
+          type: "error",
+          message: t("currentLocation.failure"),
+        });
+
+        throw error;
+      });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setState({ ...state, map });
