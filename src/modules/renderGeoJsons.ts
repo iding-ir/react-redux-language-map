@@ -50,8 +50,6 @@ export const renderGeoJsons = (map: Map, geoJsons: any) => {
       const source = prepareSource(map, key);
       const layers = prepareLayers(map, key);
 
-      const mustRender = iOptions.iLayers;
-
       const primaryColor =
         iOptions.iFeatureColors[iOptions.iDefaultStyle].primary;
       const secondaryColor =
@@ -62,7 +60,7 @@ export const renderGeoJsons = (map: Map, geoJsons: any) => {
         data: value,
       });
 
-      if (mustRender.polygon.fill) {
+      if (iOptions.iLayers.polygon.fill) {
         map.addLayer({
           id: layers.polygon.fill,
           type: "fill",
@@ -98,7 +96,7 @@ export const renderGeoJsons = (map: Map, geoJsons: any) => {
 
       makeLayerInteractive(map, layers.polygon.fill);
 
-      if (mustRender.polygon.line) {
+      if (iOptions.iLayers.polygon.line) {
         map.addLayer({
           id: layers.polygon.line,
           type: "line",
@@ -147,7 +145,7 @@ export const renderGeoJsons = (map: Map, geoJsons: any) => {
 
       makeLayerInteractive(map, layers.polygon.line);
 
-      if (mustRender.polyline.line) {
+      if (iOptions.iLayers.polyline.line) {
         map.addLayer({
           id: layers.polyline.line,
           type: "line",
@@ -197,7 +195,7 @@ export const renderGeoJsons = (map: Map, geoJsons: any) => {
 
       makeLayerInteractive(map, layers.polyline.line);
 
-      if (mustRender.polyline.symbol) {
+      if (iOptions.iLayers.polyline.symbol) {
         map.addLayer({
           id: layers.polyline.symbol,
           type: "symbol",
@@ -231,7 +229,7 @@ export const renderGeoJsons = (map: Map, geoJsons: any) => {
 
       makeLayerInteractive(map, layers.polyline.symbol);
 
-      if (mustRender.point.symbol) {
+      if (iOptions.iLayers.point.symbol) {
         map.addLayer({
           id: layers.point.symbol,
           type: "symbol",
