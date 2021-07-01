@@ -42,7 +42,7 @@ export const makeLayerInteractive = (map: Map, layer: any) => {
   });
 };
 
-export const renderGeoJson = (map: Map, geoJsons: any) => {
+export const renderGeoJsons = (map: Map, geoJsons: any) => {
   return new Promise((resolve, reject) => {
     for (let key in iOptions.iGeoJsons) {
       const value = iOptions.iGeoJsons[key];

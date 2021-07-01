@@ -2,7 +2,7 @@ import mapboxgl, { Map } from "mapbox-gl";
 
 import * as iOptions from "../constants/iOptions";
 
-export const build = (map: Map) => {
+export const buildMap = (map: Map) => {
   if (iOptions.iControls.fullscreen) {
     const fullscreenControl = new mapboxgl.FullscreenControl({});
 

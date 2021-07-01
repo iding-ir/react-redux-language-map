@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import mapboxgl, { Map } from "mapbox-gl";
 
 import { loadIcons } from "../modules/loadIcons";
-import { build } from "../modules/build";
-import { fetchGeoJson } from "../modules/fetchGeoJson";
-import { renderGeoJson } from "../modules/renderGeoJson";
+import { buildMap } from "../modules/buildMap";
+import { fetchGeoJsons } from "../modules/fetchGeoJsons";
+import { renderGeoJsons } from "../modules/renderGeoJsons";
 import * as iOptions from "../constants/iOptions";
 
 export const useMap = () => {
@@ -25,10 +25,10 @@ export const useMap = () => {
       style: iOptions.iStyles[iOptions.iDefaultStyle],
     });
 
-    build(map).then(() => {
+    buildMap(map).then(() => {
       loadIcons(map).then(() => {
-        fetchGeoJson(map).then((geoJsons) => {
-          renderGeoJson(map, geoJsons).then(() => {
+        fetchGeoJsons(map).then((geoJsons) => {
+          renderGeoJsons(map, geoJsons).then(() => {
             setMap(map);
           });
         });

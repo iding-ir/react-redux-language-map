@@ -2,7 +2,7 @@ import { Map } from "mapbox-gl";
 
 import * as iOptions from "../constants/iOptions";
 
-export const fetchGeoJson = (map: Map) => {
+export const fetchGeoJsons = (map: Map) => {
   return new Promise((resolve, reject) => {
     const promises: { [key: string]: Promise<void> } = {};
     const geoJsons: { [key: string]: string } = {};
