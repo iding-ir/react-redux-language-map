@@ -33,7 +33,6 @@ export const prepareLayers = (map: Map, options: Options, suffix: string) => {
 
 export const makeLayerInteractive = (
   map: Map,
-  options: Options,
   layer: any
 ) => {
   map.on("mousemove", layer, (event: MapMouseEvent) => {
@@ -98,7 +97,7 @@ export const renderGeoJson = (map: Map, options: Options, geoJsons: any) => {
         });
       }
 
-      makeLayerInteractive(map, options, layers.polygon.fill);
+      makeLayerInteractive(map, layers.polygon.fill);
 
       if (mustRender.polygon.line) {
         map.addLayer({
@@ -147,7 +146,7 @@ export const renderGeoJson = (map: Map, options: Options, geoJsons: any) => {
         });
       }
 
-      makeLayerInteractive(map, options, layers.polygon.line);
+      makeLayerInteractive(map, layers.polygon.line);
 
       if (mustRender.polyline.line) {
         map.addLayer({
@@ -197,7 +196,7 @@ export const renderGeoJson = (map: Map, options: Options, geoJsons: any) => {
         });
       }
 
-      makeLayerInteractive(map, options, layers.polyline.line);
+      makeLayerInteractive(map, layers.polyline.line);
 
       if (mustRender.polyline.symbol) {
         map.addLayer({
@@ -231,7 +230,7 @@ export const renderGeoJson = (map: Map, options: Options, geoJsons: any) => {
         });
       }
 
-      makeLayerInteractive(map, options, layers.polyline.symbol);
+      makeLayerInteractive(map, layers.polyline.symbol);
 
       if (mustRender.point.symbol) {
         map.addLayer({
@@ -272,7 +271,7 @@ export const renderGeoJson = (map: Map, options: Options, geoJsons: any) => {
         });
       }
 
-      makeLayerInteractive(map, options, layers.point.symbol);
+      makeLayerInteractive(map, layers.point.symbol);
     }
 
     resolve(true);

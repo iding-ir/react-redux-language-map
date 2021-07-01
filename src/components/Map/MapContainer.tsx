@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const MapContainer = (props: Props) => {

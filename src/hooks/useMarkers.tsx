@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundPosition: "bottom center",
       backgroundSize: "100% ",
       backgroundImage: "url('../assets/images/icon-marker.png')",
-      zIndex: 999,
+      zIndex: 0,
     },
   })
 );
