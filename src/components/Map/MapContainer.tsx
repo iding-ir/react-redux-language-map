@@ -40,7 +40,7 @@ export const MapContainer = (props: Props) => {
 
   const { openPopup } = usePopup();
 
-  const { map } = useMap();
+  const { map, geoJsons } = useMap();
 
   useEffect(() => {
     getLocation()
@@ -71,7 +71,7 @@ export const MapContainer = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    setState({ ...state, map });
+    setState({ ...state, map, geoJsons });
 
     if (map) {
       map.on("click", "point-symbol-cats", (event: any) => {
@@ -106,7 +106,7 @@ export const MapContainer = (props: Props) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map]);
+  }, [map, geoJsons]);
 
   return (
     <div className={classes.map} id="map">
