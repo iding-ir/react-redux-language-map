@@ -32,24 +32,13 @@ export const Sidebar = () => {
 
   const open = useSelector((state: IState) => state.sidebar.open);
 
+  const onClose = () => {
+    dispatch(closeSidebar());
+  };
+
   return (
-    <Drawer
-      anchor="left"
-      open={open}
-      onClose={() => {
-        dispatch(closeSidebar());
-      }}
-    >
-      <div
-        className={classes.list}
-        role="presentation"
-        onClick={() => {
-          dispatch(closeSidebar());
-        }}
-        onKeyDown={() => {
-          dispatch(closeSidebar());
-        }}
-      >
+    <Drawer anchor="left" open={open} onClose={onClose}>
+      <div className={classes.list} role="presentation">
         <List>
           <ListItem button key="about">
             <ListItemIcon>
