@@ -47,7 +47,7 @@ export const MapContainer = (props: Props) => {
       .then((p: unknown) => {
         const position = p as GeolocationPosition;
         const currentLocation = {
-          lon: position.coords.longitude,
+          lng: position.coords.longitude,
           lat: position.coords.latitude,
         };
 
