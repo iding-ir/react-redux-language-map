@@ -32,6 +32,11 @@ export const iStyles2: IStyles = {
   dark: "mapbox://styles/mapbox/dark-v10",
 };
 
+export const iStyles3: IStyles = {
+  light: "mapbox://styles/mapbox/streets-v11",
+  dark: "mapbox://styles/mapbox/streets-v11",
+};
+
 export const iStyles: IStyles = iStyles1;
 
 export const iDefaultStyle: IDefaultStyle = "light";
