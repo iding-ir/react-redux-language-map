@@ -15,7 +15,7 @@ export const useMap = () => {
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN as string;
 
-    const map: Map = new Map({
+    const map: Map = new mapboxgl.Map({
       container: iOptions.iMap.container,
       center: iOptions.iMap.center,
       zoom: iOptions.iMap.zoom,
