@@ -1,4 +1,4 @@
-import { createMuiTheme, ThemeOptions } from "@material-ui/core";
+import { createTheme, ThemeOptions } from "@material-ui/core";
 import { amber, teal, grey } from "@material-ui/core/colors";
 
 const themeOptions: ThemeOptions = {
@@ -18,4 +18,4 @@ const themeOptions: ThemeOptions = {
   },
 };
 
-export const theme = createMuiTheme(themeOptions);
+export const theme = createTheme(themeOptions);
